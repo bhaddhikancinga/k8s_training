@@ -1,0 +1,24 @@
+{
+    "version": "1.0",
+    "author": {
+        "name": "nilesh",
+        "email": "nilesh.j@platformer.com" ,
+        "someObj":{
+            "someKey": "someValue"
+        }
+    },
+    "superheroes":[
+        {
+            "name": "spiderman",
+            "publisher": "marvel",
+            "attribs": ["strength", "web"]
+        },
+        {
+            "name": "batman",
+            "publisher": "dc",
+            "attribs": ["detective", "belt"]
+        }
+    ],
+    "longText": "dasdas \n asdas"
+
+}

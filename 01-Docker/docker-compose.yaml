@@ -1,0 +1,20 @@
+version: '3'
+# This compose file is ONLY used for spinning up a local Postgres container for development.
+services:
+  postgres:
+    image: 'postgres:12-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=rudder
+    volumes:
+      - 'postgres_data:/var/lib/postgresql/data'
+  nginx:
+     image: nginx
+     ports:
+      - '3002:80'
+volumes:
+  postgres_data:
+    driver: local
