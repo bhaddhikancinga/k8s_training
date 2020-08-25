@@ -54,8 +54,32 @@ kubectl top nodes
 
 ## Question
 
+Part 1:
+
 Create a namespace called ghost
 Run a pod called ghost inside the ghost ns, image is ghost:alpine port is 2368
 Port Forward the pod and bind it to your 8080 on localhost
 
 Save the YAMLS
+
+Part 2:
+
+Delete the pod, recreate with following configs
+Requests: 500m, 200Mi
+Limits: 1CPU, 500Mi
+
+Part 3:
+
+Delete the pod and update the yaml with the following config
+
+Add a new container in addition to ghost called nginx, and run the image nginx:latest exposing the port 80
+
+Part 4:
+
+open 2 shells and stream logs seperately for both ghost and nginx containers
+
+part 5:
+
+Create a health check on nginx for http port 80 http path / run this check every 60 seccs
+HINT: use kubectl explain pod.spec.containers
+HINT: health check is called readinessProbe in Kubernetes
