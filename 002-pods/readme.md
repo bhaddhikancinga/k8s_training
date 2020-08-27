@@ -83,3 +83,15 @@ part 5:
 Create a health check on nginx for http port 80 http path / run this check every 60 seccs
 HINT: use kubectl explain pod.spec.containers
 HINT: health check is called readinessProbe in Kubernetes
+
+
+ANSWER
+
+kubectl create ns ghost
+
+kubectl run ghost --image ghost --port 2368 --restart Never --dry-run -o yaml > ghost.yaml
+
+kubectl port-forward po/ghost 8080:3268
+
+kubectl logs -n ghost ghost nginx  -f 
+kubectl logs -n ghost ghost  -f ghost
