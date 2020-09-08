@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: busybox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: busybox
+    spec:
+      containers:
+      - image: busybox:1.28
+        name: busybox
+        command:
+        - /bin/sh
+        - -c
+        - echo "hello world" && sleep 3600;
+        resources: {}
+status: {}
