@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: demo-app
+  name: demo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: demo-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: demo-app
+    spec:
+      containers:
+      - image: nj93/webinar-demo:v1
+        name: demo-app
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 1m
+            memory: 10Mi
+status: {}

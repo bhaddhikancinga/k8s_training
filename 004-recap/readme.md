@@ -10,3 +10,12 @@ ERROR!!! cannot import from the dump
 
 ROLLBACK to 5.7
 
+
+
+kubectl run demo-app --image  nj93/webinar-demo:v1 --port 8080 --dry-run -o yaml > deploy.yaml
+kubectl run demo-app --image  nj93/webinar-demo:v1 --restart Never --port 8080 --dry-run -o yaml
+kubectl run demo-app --image  nj93/webinar-demo:v1 --restart Always --port 8080 --dry-run -o yaml
+
+
+kubectl run demo-app --image  nj93/webinar-demo:v1 --restart OnFailure --port 8080 --dry-run -o yaml
+kubectl run demo-app --image  nj93/webinar-demo:v1 --restart OnFailure --port 8080 --dry-run -o yaml --schedule "* * * *"
