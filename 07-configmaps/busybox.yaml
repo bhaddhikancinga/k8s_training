@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: busybox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: busybox
+    spec:
+      volumes:
+      - name: mysql-configs
+        configMap:
+          name: mysql-creds
+      - name: file-configs
+        configMap:
+          name: file-configs
+      containers:
+      - image: busybox:1.28
+        name: busybox
+        volumeMounts:
+        - name: mysql-configs
+          mountPath: /myconfigs
+        - name: file-configs
+          mountPath: /myfiles
+        - name: file-configs
+          mountPath: /singleFile/app.json
+          subPath: config.json
+        # env:
+        # - name: MYSQL_HOSTNAME
+        #   valueFrom:
+        #     configMapKeyRef: 
+        #       name: mysql-creds
+        #       key: MYSQL_HOST
+        # - name: MYSQL_PASSWORD
+        #   valueFrom:
+        #     configMapKeyRef: 
+        #       name: mysql-creds
+        #       key: MYSQL_PW
+        # - name: MYSQL_USER
+        #   valueFrom:
+        #     configMapKeyRef: 
+        #       name: mysql-creds
+        #       key: MYSQL_USER
+        envFrom:
+        - configMapRef:
+             name: mysql-creds
+             
+        command:
+        - /bin/sh
+        - -c
+        - sleep 3600;
+status: {}

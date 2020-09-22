@@ -1,0 +1,28 @@
+apiVersion: v1
+data:
+  MYSQL_HOST: 192.156.123.123
+  MYSQL_USER: root
+  MYSQL_PW: "12345"
+  asdas: asdasd
+  sadasd: asdsafeasd
+  newVariable: CanISeethis
+  THIS_IS_NEW:  this is a new value
+kind: ConfigMap
+metadata:
+  name: mysql-creds
+  namespace: ncinga
+
+
+
+
+# mysqlcredObj = {
+#   mysql_user = root
+#   mysql_pass = 123
+# }
+
+
+# var mysql_user3 = mysqlcredObj.mysql_user
+
+# # /mysql-configs
+#    - MYSQL_HOST
+#    - MYSQL_USER

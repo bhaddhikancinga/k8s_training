@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  config.json: |-
+    {
+      "asdas":"adasd",
+      "asdas": 12312
+    }
+  app.properties: |-
+    maven=asdas
+    asdasd=asdasd
+    asdasd=asdasd
+    kkk
+
+kind: ConfigMap
+metadata:
+  name: file-configs
+  namespace: ncinga
