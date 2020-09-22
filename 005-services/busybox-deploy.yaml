@@ -23,6 +23,6 @@ spec:
         command:
         - /bin/sh
         - -c
-        - echo "hello world" && sleep 3600;
+        - sleep 3600;
         resources: {}
 status: {}

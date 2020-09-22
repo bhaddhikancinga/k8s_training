@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-test
+  namespace: ncinga
+spec:
+  rules:
+  - host: ncinga.dev.x.platformer.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx
+          servicePort: 8080
+        path: /

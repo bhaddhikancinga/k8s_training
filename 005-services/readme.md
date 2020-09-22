@@ -14,3 +14,17 @@ svc dns --> <svc-name>.<namespace>.svc.cluster.local
 to reference crossnamespace services <svc-name>.<namespace>.svc
 
 pod dns --> 10-20-10-23.<namespace>.pod.cluster.local
+
+
+### Install ingress
+
+kubectl create ns nginx-ingress
+
+helm repo add stable https://kubernetes-charts.storage.googleapis.com
+
+helm repo update
+
+helm install nginx-ingress \   
+   --namespace nginx-ingress \                                 
+   --set controller.service.type LoadBalancer
+    stable/nginx-ingress
