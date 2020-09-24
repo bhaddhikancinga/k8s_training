@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: busybox
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: busybox
+    spec:
+      initContainers:
+      - image: busybox
+        name: busybox-init
+        command:
+        - /bin/sh
+        - -c
+        - sleep 2 && mkdir -p /greeting && touch /greeting/hello.txt
+        resources: {}
+        volumeMounts:
+        - name: greeting-volume
+          mountPath: /greeting
+      containers:
+      - image: busybox
+        name: busybox
+        command:
+        - /bin/sh
+        - -c
+        - cat /greeting/hello.txt && sleep 3600;
+        resources: {}
+        volumeMounts:
+        - name: greeting-volume
+          mountPath: /greeting
+        - name: logs
+          mountPath: /logs
+      volumes:
+      - name: greeting-volume
+        emptyDir: {}
+      - name: logs
+        hostPath:
+          path: /
+          
+status: {}
