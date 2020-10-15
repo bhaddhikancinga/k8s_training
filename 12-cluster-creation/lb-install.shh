@@ -1,0 +1,9 @@
+#!bin/bash
+
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow 6443/tcp  # apiserver
+
+sudo apt-get -y install haproxy
+systemctl enable haproxy
+sudo service haproxy restart

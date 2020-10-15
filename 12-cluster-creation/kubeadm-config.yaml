@@ -1,0 +1,49 @@
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: 1.19.3
+apiServer:
+  certSANs:
+  - 127.0.0.1
+  - 10.128.0.6
+  - 35.188.189.153
+  - kubeadm-lb.us-central1-a.c.team-hiran.internal
+  - test-dns.com
+  extraArgs:
+    authorization-mode: Node,RBAC
+    feature-gates: "TTLAfterFinished=true"
+    audit-policy-file: "/etc/kubernetes/audit-policy.yaml"
+    audit-log-path: "/etc/kubernetes/audit/kube-apiserver-audit.log"
+    audit-log-maxage: "2"
+  extraVolumes:
+  - name: "audit-policy"
+    hostPath: "/etc/kubernetes/audit-policy.yaml"
+    mountPath: "/etc/kubernetes/audit-policy.yaml"
+    readOnly: false
+    pathType: File
+  - name: "audit-volume"
+    hostPath: "/var/log/kubernetes/audit"
+    mountPath: "/etc/kubernetes/audit"
+    readOnly: false
+    pathType: DirectoryOrCreate
+  timeoutForControlPlane: 4m0s
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controlPlaneEndpoint: kubeadm-lb.us-central1-a.c.team-hiran.internal
+controllerManager: 
+  extraArgs:
+    feature-gates: "TTLAfterFinished=true"
+    bind-address: 0.0.0.0
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 192.168.0.0/16
+scheduler:
+  extraArgs:
+    feature-gates: "TTLAfterFinished=true"
+    bind-address: 0.0.0.0
+
