@@ -5,7 +5,7 @@ metadata:
     run: nginx
     app: nginx
     company: ncinga
-  name: nginx-ncinga
+  name: default
   namespace: ncinga
 spec:
   containers:

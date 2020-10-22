@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: test-user-all-access-ns
+  namespace: ncinga
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: all-access-ns
+  namespace: ncinga
+subjects:
+- kind: ServiceAccount
+  name: test-user
+  namespace: ncinga
